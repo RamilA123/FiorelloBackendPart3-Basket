@@ -1,0 +1,93 @@
+﻿@model List<SliderVM>
+@{
+    ViewData["Title"] = "Slider";
+}
+
+
+<style>
+   
+    td{
+        width: 300px;
+        padding: 0.5rem 0.9375rem !important;
+    }
+
+    .status-slider{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .status-true{
+        background-color: green;
+    }
+
+    .status-false {
+        background-color: red;
+    }
+
+    .image {
+        width: 280px !important;
+        height: 130px !important;
+        border-radius: 0 !important;
+    }
+
+</style>
+
+<h1 class="text-center my-3">Slider</h1>
+<div class="container">
+    <div class="btn-create">
+        <a class="btn btn-success btn-rounded" asp-controller="Slider" asp-action="Detail">Create</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered my-5">
+            <thead>
+                <tr>
+                    <th>
+                        Image
+                    </th>
+                    <th>
+                        Create Date
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (SliderVM slider in Model)
+                {
+                    <tr>
+                        <td>
+                            <img class="image" src="~/img/@slider.Image">
+                        </td>
+                        <td>
+                           @slider.CreateDate
+                        </td>
+                        <td>
+                           <div class="status-slider @(slider.Status ? "status-true" : "status-false")">
+                           </div>
+
+                        </td>
+                        <td>
+                          <a class="btn btn-primary btn-rounded" asp-controller="Slider" asp-action="Detail" asp-route-id="@slider.Id">Details</a>
+                          <a class="btn btn-warning btn-rounded" asp-controller="Slider" asp-action="Detail" asp-route-id="@slider.Id">Edit</a>
+                          <a class="btn btn-danger btn-rounded" asp-controller="Slider" asp-action="Detail" asp-route-id="@slider.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+               
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+           
+
+
+ 
+
